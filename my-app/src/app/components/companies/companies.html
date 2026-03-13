@@ -1,0 +1,82 @@
+<div class="container py-5">
+  <div class="row g-4">
+    
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-4">
+          <h2 class="h4 fw-bold mb-4 text-primary">
+            {{ selectedCompanyId() ? 'Edit' : 'Add' }} Company
+          </h2>
+          
+          <form [formGroup]="companyForm" (ngSubmit)="selectedCompanyId() ? updateCompany() : createCompany()">
+            
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Company Name</label>
+              <input formControlName="name" class="form-control form-control-lg" placeholder="e.g., Cyraco">
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Address</label>
+              <input formControlName="address" class="form-control" placeholder="e.g., Thessaloniki">
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-lg shadow-sm" [disabled]="companyForm.invalid">
+                <i class="bi bi-save me-2"></i>Save
+              </button>
+              
+              @if (selectedCompanyId()) {
+                <button type="button" class="btn btn-light" (click)="selectedCompanyId.set(undefined); companyForm.reset()">
+                  Cancel
+                </button>
+              }
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-4">
+          <h3 class="h4 fw-bold mb-4">List of Companies</h3>
+          
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th class="py-3">Name</th>
+                  <th class="py-3">Address</th>
+                  <th class="py-3 text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (co of companies(); track co.id) {
+                  <tr>
+                    <td class="fw-medium text-dark">
+                      <i class="bi bi-briefcase me-2 text-primary"></i>{{ co.name }}
+                    </td>
+                    <td class="text-muted">
+                      <i class="bi bi-geo-alt me-1"></i>{{ co.address }}
+                    </td>
+                    <td class="text-end">
+                      <div class="btn-group shadow-sm">
+                        <button class="btn btn-sm btn-outline-primary" (click)="getCompany(co.id!)">
+                          <i class="bi bi-pencil"></i> Edit
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" (click)="deleteCompany(co.id!)">
+                          <i class="bi bi-trash"></i> Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

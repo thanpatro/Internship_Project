@@ -1,0 +1,50 @@
+<aside class="sidebar-container bg-dark text-white shadow" [class.open]="isOpen">
+  <div class="p-4">
+    
+    <div class="mb-4">
+      @if (employeeService.selectedEmployeeId() || companyService.selectedCompanyId()) {
+        <button class="btn btn-link text-decoration-none text-secondary p-0 mb-2" 
+                (click)="employeeService.selectedEmployeeId() ? goBackToEmployees() : goBackToCompanies()">
+          ← Back
+        </button>
+      }
+      <h3 class="h5 fw-bold text-primary mb-0">
+        {{ employeeService.selectedEmployeeId() ? 'Devices' : (companyService.selectedCompanyId() ? 'Employees' : 'Companies') }}
+      </h3>
+    </div>
+
+    <div class="list-group list-group-flush">
+      
+      @if (employeeService.selectedEmployeeId()) {
+        @for (dev of devicesOfSelectedEmployee(); track dev.serialNumber) {
+          <div class="list-group-item bg-transparent text-white border-secondary px-0 d-flex justify-content-between">
+            {{ dev.name }}
+            <span class="badge bg-secondary rounded-pill small">{{ dev.type }}</span>
+          </div>
+        }
+      } 
+      @else if (companyService.selectedCompanyId()) {
+        @for (emp of employeesOfSelectedCompany(); track emp.id) {
+          <div class="list-group-item bg-transparent text-white border-secondary px-0 clickable-item d-flex justify-content-between"
+               (click)="selectEmployee(emp.id!)">
+            {{ emp.name }}
+            <span class="text-secondary">›</span>
+          </div>
+        }
+      }
+      @else {
+        @for (co of companyService.allCompanies(); track co.id) {
+          <div class="list-group-item bg-transparent text-white border-secondary px-0 clickable-item d-flex justify-content-between"
+               (click)="selectCompany(co.id!)">
+            {{ co.name }}
+            <span class="text-secondary">›</span>
+          </div>
+        }
+      }
+
+    </div>
+
+    @if (false) { <p class="text-muted small text-center mt-4 italic">Nothing found.</p>
+    }
+  </div>
+</aside>

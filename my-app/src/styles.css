@@ -1,0 +1,26 @@
+* { 
+    box-sizing: border-box; 
+}
+body {
+    padding: 30px;
+    background-color: #f5f7fb;
+    font-family: sans-serif;
+}
+
+input, select, .card, .item-row {
+    max-width: 800px; 
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    display: block;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+}

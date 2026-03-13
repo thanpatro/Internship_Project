@@ -1,0 +1,29 @@
+<div class="d-flex min-vh-100 bg-light overflow-hidden"> 
+  <app-sidebar [isOpen]="isSideMenuOpen()"></app-sidebar>
+
+  <div class="flex-grow-1 d-flex flex-column main-wrapper" 
+       [style.margin-left]="isSideMenuOpen() ? '280px' : '0'">
+    
+    <header class="navbar navbar-expand navbar-dark bg-dark shadow-sm px-4">
+      <div class="container-fluid d-flex justify-content-between">
+        
+        <div class="d-flex align-items-center">
+          <button class="btn btn-outline-light me-3 border-0" (click)="toggleSideMenu()">
+             {{ isSideMenuOpen() ? '✕' : '☰' }}
+          </button>
+          <h1 class="navbar-brand mb-0 fw-bold fs-4">{{ title }}</h1>
+        </div>
+
+        <nav class="nav d-none d-md-flex"> <a routerLink="/companies" routerLinkActive="active" class="nav-link text-light px-3">Companies</a>
+          <a routerLink="/employees" routerLinkActive="active" class="nav-link text-light px-3">Employees</a>
+          <a routerLink="/devices" routerLinkActive="active" class="nav-link text-light px-3">Devices</a>
+        </nav>
+        
+      </div>
+    </header>
+
+    <main class="container-fluid p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

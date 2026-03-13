@@ -1,0 +1,95 @@
+<div class="container py-5">
+  <div class="row g-4">
+    
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-4">
+          <h2 class="h4 fw-bold mb-4 text-primary">
+            {{ selectedDeviceId() ? 'Edit' : 'Add' }} Device
+          </h2>
+          
+          <form [formGroup]="deviceForm" (ngSubmit)="selectedDeviceId() ? updateDevice() : createDevice()">
+            
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Device Name</label>
+              <input formControlName="name" class="form-control" placeholder="e.g., MacBook Pro">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Type</label>
+              <input formControlName="type" class="form-control" placeholder="e.g., Laptop, Mobile">
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Owner</label>
+              <select formControlName="employeeId" class="form-select">
+                <option [value]="null" disabled>Select Employee...</option>
+                @for (e of employeeService.allEmployees(); track e.id) {
+                  <option [value]="e.id">{{ e.name }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-lg shadow-sm" [disabled]="deviceForm.invalid">
+                <i class="bi bi-save me-2"></i>Save 
+              </button>
+              
+              @if (selectedDeviceId()) {
+                <button type="button" class="btn btn-light" (click)="selectedDeviceId.set(undefined); deviceForm.reset()">
+                  Cancel
+                </button>
+              }
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-4">
+          <h3 class="h4 fw-bold mb-4"> List of Devices</h3>
+          
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th class="py-3 px-4">Device Info</th>
+                  <th class="py-3">Current Owner</th>
+                  <th class="py-3 text-end px-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (dev of devices(); track dev.serialNumber) {
+                  <tr>
+                    <td class="py-3 px-4">
+                      <div class="fw-bold text-dark">{{ dev.name }}</div>
+                      <small class="text-muted text-uppercase">{{ dev.type }}</small>
+                    </td>
+                    <td class="py-3">
+                      <span class="text-secondary">
+                        {{ employeeService.getEmployeeById(dev.employeeId)?.name || 'Unassigned' }}
+                      </span>
+                    </td>
+                    <td class="py-3 text-end px-4">
+                      <div class="btn-group shadow-sm">
+                        <button class="btn btn-sm btn-outline-primary" (click)="getDevice(dev.serialNumber!)">
+                          Edit
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" (click)="deleteDevice(dev.serialNumber!)">
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
