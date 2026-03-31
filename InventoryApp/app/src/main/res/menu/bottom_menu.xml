@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/companiesFragment"
+        android:icon="@drawable/business"
+        android:title="Companies" />
+    <item
+        android:id="@+id/employeesFragment"
+        android:icon="@drawable/employee"
+        android:title="Employees" />
+    <item
+        android:id="@+id/devicesFragment"
+        android:icon="@drawable/device"
+        android:title="Devices" />
+</menu>

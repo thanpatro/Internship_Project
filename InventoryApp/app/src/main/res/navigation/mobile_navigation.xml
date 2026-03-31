@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/companiesFragment"
+        android:name="com.example.inventoryapp.ui.CompaniesFragment"
+        android:label="fragment_companies"
+        tools:layout="@layout/fragment_companies" />
+    <fragment
+        android:id="@+id/employeesFragment"
+        android:name="com.example.inventoryapp.ui.EmployeesFragment"
+        android:label="fragment_employees"
+        tools:layout="@layout/fragment_employees" />
+    <fragment
+        android:id="@+id/devicesFragment"
+        android:name="com.example.inventoryapp.ui.DevicesFragment"
+        android:label="fragment_devices"
+        tools:layout="@layout/fragment_devices" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.inventoryapp.ui.HomeFragment"
+        android:label="HomeFragment" />
+</navigation>
