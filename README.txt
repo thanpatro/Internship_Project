@@ -1,8 +1,9 @@
-# Companies,Employees and Devices Full Stack Management System
+# Companies,Employees and Devices Full Stack Management System And Android App
 
 ## Architecture
 
 Frontend : Angular
+Android: Android Studio
 Backend: Java Spring Boot
 Database: MongoDB
 
@@ -31,6 +32,8 @@ MongoDB Compass: Download from here (https://www.mongodb.com/try/download/compas
 IDE: IntelliJ IDEA (Recommended for Backend): Download from here (https://www.jetbrains.com/idea/download/?section=window) (Community edition is enough to run the project)
      VS Code (Recommended for Frontend): Download from here (https://code.visualstudio.com/)
 
+Android Studio: Download from here(https://developer.android.com/studio)
+
 ## EXECUTION
 
 1) Database setup
@@ -55,3 +58,11 @@ IDE: IntelliJ IDEA (Recommended for Backend): Download from here (https://www.je
 -Run 'npm install' to download dependencies
 -Run 'ng serve' to start the app
 -Open your browser at http://localhost:4200
+
+4) Android Setup
+- Open Android Studio and select File > Open
+- Select the android folder of the project and import it
+- Wait for Gradle toy sync and download all necessary dependencies
+- Ensure that Gradle JDK is set to Java 17
+- If you want to run the app in the emulator the URL is ready "http://10.0.2.2:8080/". If you want to run the app in your physical device go to app/src/main/java/com/example/inventoryapp/network/RetrofitClient.java
+and change the URL to "http://<YOUR_PC_IP>:8080/" and ensure that both devices are on the same Wi-Fi.
