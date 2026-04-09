@@ -1,3 +1,7 @@
+// decide to make custom listeners because in this way we have reusability
+// and we can use the adapter in different parts. Also, we have separation of
+// concerns and better maintenance of the code.
+
 package com.example.inventoryapp.adapters;
 
 import android.view.LayoutInflater;
