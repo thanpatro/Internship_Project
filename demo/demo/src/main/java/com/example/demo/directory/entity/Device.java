@@ -57,7 +57,7 @@ public class Device {
     public String getCompanyId() {
         return companyId;
     }
-     public void setCompanyId(String companyId){
+    public void setCompanyId(String companyId){
         this.companyId = companyId;
     }
 }

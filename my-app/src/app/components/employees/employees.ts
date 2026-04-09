@@ -22,7 +22,7 @@ export class EmployeesComponent {
 
   employeeForm = this.form.group({
     name : ['', [Validators.required]],
-    email : ['', [Validators.required]],
+    email : ['', [Validators.required, Validators.email]],
     companyId : ['', [Validators.required]]
   } )
 

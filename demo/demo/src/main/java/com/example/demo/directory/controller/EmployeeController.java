@@ -4,6 +4,7 @@ import com.example.demo.directory.mapper.EmployeeMapper;
 import com.example.demo.directory.dto.EmployeeDto;
 import com.example.demo.directory.entity.Employee;
 import com.example.demo.directory.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,12 +42,12 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
-           Employee employee = employeeMapper.convertToEmployee(employeeDto);
-           Employee employeeSaved =  employeeService.saveEmployee(employee);
-           EmployeeDto employeeDtoSaved = employeeMapper.convertToEmployeeDto(employeeSaved);
+    public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto){
+        Employee employee = employeeMapper.convertToEmployee(employeeDto);
+        Employee employeeSaved =  employeeService.saveEmployee(employee);
+        EmployeeDto employeeDtoSaved = employeeMapper.convertToEmployeeDto(employeeSaved);
 
-           return ResponseEntity.status(HttpStatus.CREATED).body(employeeDtoSaved);
+        return ResponseEntity.status(HttpStatus.CREATED).body(employeeDtoSaved);
     }
 
     @PutMapping("/{id}")

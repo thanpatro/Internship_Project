@@ -28,15 +28,24 @@
             </div>
 
             <div class="d-grid gap-2"> 
-              <button type="submit" class="btn btn-primary btn-lg shadow-sm" [disabled]="employeeForm.invalid">
-                <i class="bi bi-save me-2"></i>Save
-              </button>
-              
+               <button type="submit" 
+                  class="btn btn-primary btn-lg shadow-sm" 
+                  [disabled]="employeeForm.invalid"
+                  [title]="employeeForm.invalid ? 'Please check the email format and fill all fields' : 'Click to save'">
+                  <i class="bi bi-save me-2"></i>Save
+               </button>
+
+              @if (employeeForm.get('email')?.invalid && employeeForm.get('email')?.dirty) {
+                <small class="text-danger text-center">
+                   Please provide a valid email.
+                </small>
+          }
+  
               @if (selectedEmployeeId()) {
                 <button type="button" class="btn btn-light" (click)="selectedEmployeeId.set(undefined); employeeForm.reset()">
-                  Cancel
+                Cancel
                 </button>
-              }
+        }
             </div>
           </form>
         </div>
